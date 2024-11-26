@@ -112,7 +112,8 @@ int main()
         // обработка случаев, когда bytes_read не положителен
         else if (bytes_read == -1)
         {
-            perror("Error reading close(fd)");
+            perror("Error reading from FIFO");
+            close(fd);
         }
         else if (bytes_read == 0)
         {
@@ -120,6 +121,7 @@ int main()
             close(fd);
         }
     }
+
     unlink(PATH); // yдаляем FIFO при завершении
     return 0;
 }
